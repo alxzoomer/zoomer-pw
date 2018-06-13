@@ -2,11 +2,13 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const logger = require('morgan')
+const favicon = require('serve-favicon')
 
 // Constants
 const PORT = 8080;
 const HOST = '0.0.0.0';
 
+app.use(favicon(path.join(__dirname, 'public', 'static', 'images', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'public', 'static')))
 
 app.use(logger('common'));
