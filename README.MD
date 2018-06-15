@@ -1,8 +1,8 @@
 # zoomer.pw web site
 
-# Install and run
+# Install and run for development
 
 ```sh
 yarn
-yarn start
+yarn dev
 ```
