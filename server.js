@@ -1,4 +1,6 @@
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const helmet = require('helmet');
 const path = require('path');
 const logger = require('morgan');
@@ -8,7 +10,12 @@ const app = express();
 
 // Constants
 const PORT = 8080;
+const HTTPS_PORT = 8443;
 const HOST = '0.0.0.0';
+const OPTIONS = {
+  cert: fs.readFileSync('./cert/localhost.crt'),
+  key: fs.readFileSync('./cert/localhost.key'),
+};
 
 app.use(helmet());
 app.use(favicon(path.join(__dirname, 'public', 'static', 'images', 'favicon.ico')));
@@ -17,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public', 'static')));
 app.use(logger('common'));
 
 app.listen(PORT, HOST, () => console.log(`Running on http://${HOST}:${PORT}`));
+https.createServer(OPTIONS, app).listen(HTTPS_PORT);
 
 app.use((req, res, next) => {
   // Website you wish to allow to connect
