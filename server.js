@@ -35,6 +35,7 @@ app.use(helmet());
 app.use(favicon(path.join(__dirname, 'public', 'static', 'images', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public', 'static')));
 app.use('/.well-known', express.static(path.join(__dirname, 'public', 'certbot_webroot', '.well-known')));
+app.use(express.static(path.join(__dirname, 'public', 'static_rw')));
 
 app.use(logger('common'));
 
