@@ -15,7 +15,5 @@ RUN yarn
 # Bundle app source
 COPY . .
 
-VOLUME [ "/usr/src/app/public/certbot_webroot", "/etc/letsencrypt", "/usr/src/app/public/static_rw" ]
-
-EXPOSE 8080 8443
+EXPOSE 8080
 CMD [ "node", "server.js" ]
